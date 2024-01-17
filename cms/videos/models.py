@@ -6,6 +6,13 @@ from sqlalchemy import String
 from conf.db.models import Model
 
 
+class StatusChoice:
+    NOT_PROCESSED = "NOT_PROCESSED"
+    PROCESSED = "PROCESSED"
+    PROCESSING = "PROCESSING"
+    FAILED = "FAILED"
+
+
 class Video(Model):
     __tablename__ = "videos"
 
@@ -13,3 +20,5 @@ class Video(Model):
     title = Column(String)
     description = Column(String)
     is_active = Column(Boolean, default=True)
+    file = Column(String)
+    status = Column(String, default=StatusChoice.NOT_PROCESSED)

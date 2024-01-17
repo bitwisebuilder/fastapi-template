@@ -19,6 +19,8 @@ class VideoUpdate(VideoBase):
 
 class Video(VideoBase):
     id: int
+    file: str | None = None
+    status: str | None = None
 
     class Config:
         orm_mode = True

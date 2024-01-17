@@ -22,15 +22,29 @@ def create_video(db: Session, video: schemas.VideoCreate):
     return db_video
 
 
+def save_updated_video(db: Session, video: models.Video):
+    db.add(video)
+    db.commit()
+    db.refresh(video)
+    return video
+
+
 def update_video(db: Session, video: models.Video, updated_data: schemas.VideoUpdate):
     updated_data = updated_data.dict(exclude_unset=True)
     for key, value in updated_data.items():
         setattr(video, key, value)
 
-    db.add(video)
-    db.commit()
-    db.refresh(video)
-    return video
+    return save_updated_video(video)
+
+
+def update_file_in_video(db: Session, filename: str, video: models.Video):
+    video.file = filename
+    return save_updated_video(video)
+
+
+def update_status_in_video(db: Session, status: str, video: models.Video):
+    video.status = status
+    return save_updated_video(video)
 
 
 def delete_video(db: Session, video: models.Model):

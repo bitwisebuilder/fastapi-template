@@ -18,3 +18,17 @@ class Settings:
     MYSQL_HOST = os.getenv("MYSQL_HOST")
     MYSQL_DB = os.getenv("MYSQL_DB")
     MYSQL_PORT = os.getenv("MYSQL_PORT")
+
+    RABBITMQ_USER = os.getenv("RABBITMQ_DEFAULT_USER")
+    RABBITMQ_PASSWORD = os.getenv("RABBITMQ_DEFAULT_PASS")
+    RABBITMQ_HOST = os.getenv("RABBITMQ_DEFAULT_HOST")
+    RABBITMQ_PORT = os.getenv("RABBITMQ_DEFAULT_PORT")
+    RABBITMQ_VHOST = os.getenv("RABBITMQ_DEFAULT_VHOST")
+
+    REDIS_HOST = os.getenv("REDIS_HOST")
+    REDIS_PORT = os.getenv("REDIS_PORT")
+    REDIS_DB = os.getenv("REDIS_DB")
+
+    BUCKET_NAME = os.getenv("BUCKET_NAME")
+    AWS_ACCESS_KEY_ID = os.getenv("AWS_ACCESS_KEY_ID")
+    AWS_SECRET_ACCESS_KEY = os.getenv("AWS_SECRET_ACCESS_KEY")

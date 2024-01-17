@@ -16,5 +16,16 @@ services:
     ports:
       - "${MYSQL_PORT}:3306"
 
+  cms-rabbitmq:
+    image: "rabbitmq:latest"
+    ports:
+      - "5672:5672"
+    env_file:
+      - .env
+  cms-redis:
+    image: "redis:latest"
+    ports:
+      - "6379:6379"
+
 volumes:
   cms-mysql-data:
