@@ -1,0 +1,20 @@
+[tool.poetry]
+name = "file-uploader-skeleton"
+version = "0.1.0"
+description = "Skeleton Project in FastAPI to upload file to S3 and fire some background Async jobs"
+authors = ["Kuldeep Pisda <hello@kdpisda.in>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+fastapi = "^0.109.0"
+python-dotenv = "^1.0.0"
+psycopg2-binary = "^2.9.9"
+uvicorn = "^0.26.0"
+gunicorn = "^21.2.0"
+sqlalchemy = "^2.0.25"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
