@@ -1,18 +1,20 @@
 version: '3.8'
 
 services:
-  cms-postgres:
-    image: postgres:13
+  cms-mysql:
+    image: mysql
+    restart: always
     env_file:
       - .env
     environment:
-      POSTGRES_DB: ${POSTGRES_DB}
-      POSTGRES_USER: ${POSTGRES_USER}
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DB}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
     volumes:
-      - cms-postgres-data:/var/lib/postgresql/data
+      - cms-mysql-data:/var/lib/mysql
     ports:
-      - "5432:5432"
+      - "${MYSQL_PORT}:3306"
 
 volumes:
-  cms-postgres-data:
+  cms-mysql-data:

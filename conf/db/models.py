@@ -5,13 +5,11 @@ from sqlalchemy.orm import sessionmaker
 from conf.settings import Settings
 
 SQLALCHEMY_DATABASE_URL = (
-    f"postgresql://{Settings.POSTGRES_USER}:{Settings.POSTGRES_PASSWORD}"
-    f"@{Settings.POSTGRES_HOST}:{Settings.POSTGRES_PORT}/{Settings.POSTGRES_DB}"
+    f"mysql+pymysql://{Settings.MYSQL_USER}:{Settings.MYSQL_PASSWORD}@"
+    f"{Settings.MYSQL_HOST}:{Settings.MYSQL_PORT}/{Settings.MYSQL_DB}"
 )
 
-engine = create_engine(
-    SQLALCHEMY_DATABASE_URL, connect_args={"check_same_thread": False}
-)
+engine = create_engine(SQLALCHEMY_DATABASE_URL)
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
-Base = declarative_base()
+Model = declarative_base()
