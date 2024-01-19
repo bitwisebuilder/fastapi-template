@@ -25,25 +25,25 @@ def get_video_or_raise_exception(db: Session, video_id: int):
 
 
 @router.get("/videos/", response_model=list[schemas.Video])
-async def list_videos(skip: int = 0, limit: int = 100, db: Session = Depends(get_db)):
+def list_videos(skip: int = 0, limit: int = 100, db: Session = Depends(get_db)):
     videos = crud.get_videos(db, skip, limit)
     return videos
 
 
 @router.post("/videos/", response_model=schemas.Video)
-async def create_video(video: schemas.VideoCreate, db: Session = Depends(get_db)):
+def create_video(video: schemas.VideoCreate, db: Session = Depends(get_db)):
     db_video = crud.create_video(db, video=video)
     return db_video
 
 
 @router.get("/videos/{video_id}/", response_model=schemas.Video)
-async def get_video(video_id: int, db: Session = Depends(get_db)):
+def get_video(video_id: int, db: Session = Depends(get_db)):
     db_video = get_video_or_raise_exception(db, video_id)
     return db_video
 
 
 @router.patch("/videos/{video_id}/", response_model=schemas.Video)
-async def update_video(
+def update_video(
     video_id: int, video: schemas.VideoUpdate, db: Session = Depends(get_db)
 ):
     db_video = get_video_or_raise_exception(db, video_id)
@@ -53,7 +53,7 @@ async def update_video(
 
 
 @router.post("/videos/{video_id}/upload/", response_model=schemas.Video)
-async def upload_video(
+def upload_video(
     video_id: int, file: UploadFile = File(...), db: Session = Depends(get_db)
 ):
     video = get_video_or_raise_exception(db, video_id)
@@ -64,7 +64,7 @@ async def upload_video(
 
 
 @router.delete("/videos/{video_id}/")
-async def delete_video(video_id: int, db: Session = Depends(get_db)):
+def delete_video(video_id: int, db: Session = Depends(get_db)):
     db_video = get_video_or_raise_exception(db, video_id)
     crud.delete_video(db, db_video)
     return JSONResponse({}, status_code=204)
