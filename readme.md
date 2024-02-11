@@ -1,6 +1,18 @@
-# FastAPI Skeleton
+# FastAPI ProKit: Your Professional FastAPI Starter Template
 
-## Table of Contents
+## Overview
+
+FastAPI ProKit is a comprehensive and professional-grade starter template for FastAPI projects. It integrates best practices and tools, streamlining the development process and ensuring scalable, robust applications. This template is designed with simplicity and efficiency in mind, suitable for both beginners and experienced developers.
+
+## Key Features
+- **Structured API Versioning**: Organized into manageable modules for easy scalability and maintenance.
+- **Database Integration**: Seamless integration with SQLAlchemy and Alembic for database operations.
+- **Asynchronous Task Handling**: Celery setup for handling background tasks effectively.
+- **Docker and Docker-Compose Support**: Simplifies deployment and testing processes.
+- **Kubernetes-Ready**: Fully tested setup for Kubernetes, ensuring scalability and reliability in container orchestration.
+- **Healthcheck Endpoints**: For real-time monitoring and maintenance.
+
+## Table of Contents for Technical Documentation
 
 - [Getting the skeleton up and running](#getting-the-skeleton-project-up-and-running)
 - [API Versioning](#api-versioning)
