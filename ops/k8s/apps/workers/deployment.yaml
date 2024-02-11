@@ -1,0 +1,92 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: celery-worker-deployment
+  labels:
+    app: celery-worker
+spec:
+  replicas: 2  # Adjust the number of replicas as needed
+  selector:
+    matchLabels:
+      app: celery-worker
+  template:
+    metadata:
+      labels:
+        app: celery-worker
+    spec:
+      containers:
+      - name: celery-worker-container
+        image: fastapi-container:latest1
+        command: ["python", "-m", "celery", "-A", "conf._celery.app.celery_app", "worker", "--loglevel=info"]
+        env:
+          - name: ALLOW_ORIGINS
+            valueFrom:
+              configMapKeyRef:
+                name: app-config
+                key: ALLOW_ORIGINS
+          - name: DB_USER
+            valueFrom:
+              configMapKeyRef:
+                name: app-config
+                key: DB_USER
+          - name: DB_PASSWORD
+            valueFrom:
+              configMapKeyRef:
+                name: app-config
+                key: DB_PASSWORD
+          - name: DB_HOST
+            valueFrom:
+              configMapKeyRef:
+                name: app-config
+                key: DB_HOST
+          - name: DB_PORT
+            valueFrom:
+              configMapKeyRef:
+                name: app-config
+                key: DB_PORT
+          - name: DB_NAME
+            valueFrom:
+              configMapKeyRef:
+                name: app-config
+                key: DB_NAME
+          - name: RABBITMQ_DEFAULT_USER
+            valueFrom:
+              configMapKeyRef:
+                name: app-config
+                key: RABBITMQ_DEFAULT_USER
+          - name: RABBITMQ_DEFAULT_PASS
+            valueFrom:
+              configMapKeyRef:
+                name: app-config
+                key: RABBITMQ_DEFAULT_PASS
+          - name: RABBITMQ_DEFAULT_HOST
+            valueFrom:
+              configMapKeyRef:
+                name: app-config
+                key: RABBITMQ_DEFAULT_HOST
+          - name: RABBITMQ_DEFAULT_PORT
+            valueFrom:
+              configMapKeyRef:
+                name: app-config
+                key: RABBITMQ_DEFAULT_PORT
+          - name: RABBITMQ_DEFAULT_VHOST
+            valueFrom:
+              configMapKeyRef:
+                name: app-config
+                key: RABBITMQ_DEFAULT_VHOST
+          - name: REDIS_HOST
+            valueFrom:
+              configMapKeyRef:
+                name: app-config
+                key: REDIS_HOST
+          - name: REDIS_PORT
+            valueFrom:
+              configMapKeyRef:
+                name: app-config
+                key: REDIS_PORT
+          - name: REDIS_DB
+            valueFrom:
+              configMapKeyRef:
+                name: app-config
+                key: REDIS_DB
+        imagePullPolicy: Never

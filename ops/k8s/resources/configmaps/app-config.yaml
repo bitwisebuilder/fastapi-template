@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: app-config
+data:
+  ALLOW_ORIGINS: "http://localhost:3000,https://sylla.vercel.app,https://app.sylla.ai"
+  DB_USER: "mysql"
+  DB_PASSWORD: "xX/dYCoW9EM1AHbu8rlxvw=="
+  DB_HOST: "mysql-service"
+  DB_PORT: "3306"
+  DB_NAME: "cms"
+  RABBITMQ_DEFAULT_USER: "myuser"
+  RABBITMQ_DEFAULT_PASS: "eedSPsUPX3Ov6Kt3emilfg=="
+  RABBITMQ_DEFAULT_HOST: "rabbitmq-service"
+  RABBITMQ_DEFAULT_PORT: "5672"
+  RABBITMQ_DEFAULT_VHOST: "myhost"
+  REDIS_HOST: "redis-service"
+  REDIS_PORT: "6379"
+  REDIS_DB: "0"
