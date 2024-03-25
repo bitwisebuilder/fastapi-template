@@ -13,6 +13,7 @@ from cms.videos import crud
 from cms.videos.helpers import get_file_extension
 from cms.videos.helpers import upload_file_to_s3
 from conf.db.dependencies import get_db
+from utils.auth.session import TokenValidator
 
 router = APIRouter()
 
@@ -25,7 +26,12 @@ def get_video_or_raise_exception(db: Session, video_id: int):
 
 
 @router.get("/videos/", response_model=list[schemas.Video])
-def list_videos(skip: int = 0, limit: int = 100, db: Session = Depends(get_db)):
+def list_videos(
+    skip: int = 0,
+    limit: int = 100,
+    db: Session = Depends(get_db),
+    payload: dict = Depends(TokenValidator()),
+):
     videos = crud.get_videos(db, skip, limit)
     return videos
 

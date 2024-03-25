@@ -5,6 +5,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from cms.v1 import routes as v1_video_routes
 from conf.settings import Settings
 from healthcheck import routes as healthcheck_routes
+from iam.routes.v1 import routes as v1_auth_routes
 
 load_dotenv()
 
@@ -21,4 +22,5 @@ app.add_middleware(
 )
 
 app.include_router(healthcheck_routes.router, prefix="/healthcheck")
-app.include_router(v1_video_routes.router, prefix="/api/v1")
+app.include_router(v1_video_routes.router, prefix="/api/v1/cms")
+app.include_router(v1_auth_routes.router, prefix="/api/v1/iam")

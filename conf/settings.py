@@ -29,6 +29,10 @@ class Settings:
     REDIS_PORT = os.getenv("REDIS_PORT")
     REDIS_DB = os.getenv("REDIS_DB")
 
+    SECRET_KEY = os.getenv("SECRET_KEY")
+
     BUCKET_NAME = os.getenv("BUCKET_NAME")
     AWS_ACCESS_KEY_ID = os.getenv("AWS_ACCESS_KEY_ID")
     AWS_SECRET_ACCESS_KEY = os.getenv("AWS_SECRET_ACCESS_KEY")
+    ACCESS_TOKEN_EXPIRY_IN_MINUTES = os.getenv("ACCESS_TOKEN_EXPIRY_IN_MINUTES", 60)
+    REFRESH_TOKEN_EXPIRY_IN_DAYS = os.getenv("REFRESH_TOKEN_EXPIRY_IN_DAYS", 7)
